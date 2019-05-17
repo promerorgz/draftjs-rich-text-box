@@ -9,7 +9,7 @@ import { StyledRichEditor, RichToolbar } from '../styles'
 
 
 
-const RichEditor = (props) => {
+const RichEditor = () => {
 
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
