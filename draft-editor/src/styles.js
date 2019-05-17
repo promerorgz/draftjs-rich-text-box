@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import Toolbar from '@material-ui/core/Toolbar';
 
 export const StyledApp = styled.div`
     padding: 24px;
@@ -11,16 +11,17 @@ export const StyledRichEditor = styled.div`
   .DraftEditor-root{
     padding: 24px;
     margin: 24px auto;
-    border: 1px solid black;
+    border: 1px solid #BDBDBD;
     height: 250px;
     background-color: white;
     border-radius: 5px;
     overflow-y: scroll;
   }
   `
-export const RichToolbar = styled.div`
-    background-color: lightgray;
-    border: 1px solid grey;
+export const RichToolbar = styled(Toolbar)`
+    background-color: #F2F2F2;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
     color: gray;
     box-shadow: 0, 3, 5, -1, fade(black, 0.2);
   `
