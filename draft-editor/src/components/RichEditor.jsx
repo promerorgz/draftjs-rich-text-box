@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import { toolbarControls } from './utils/Controls';
 import Preview from './Preview';
-import { StyledRichEditor, RichToolbar, StyledDivider } from '../styles'
+import { StyledRichEditor, RichToolbar } from '../styles'
 
 
 
@@ -33,7 +33,7 @@ const RichEditor = () => {
             </IconButton>
           ))}
         </RichToolbar>
-        <Editor editorState={editorState} onChange={handleChange} />
+        <Editor editorState={editorState} onChange={handleChange} placeholder="Enter some text..." />
       </StyledRichEditor>
       <Divider />
       <Preview editorState={editorState} />

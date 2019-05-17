@@ -1,3 +1,4 @@
+import 'draft-js/dist/Draft.css'
 import styled from 'styled-components';
 import Toolbar from '@material-ui/core/Toolbar';
 
