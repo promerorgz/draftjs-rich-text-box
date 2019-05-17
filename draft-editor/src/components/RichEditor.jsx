@@ -7,38 +7,34 @@ import { toolbarControls } from './utils/Controls';
 import Preview from './Preview';
 import { StyledRichEditor, RichToolbar } from '../styles'
 
-
-
-
 const RichEditor = () => {
 
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
+    const handleChange = (editorState) => {
+        setEditorState(editorState);
+    };
 
-  const handleChange = (editorState) => {
-    setEditorState(editorState);
-  };
+    const handleStyle = (style) => {
+        setEditorState(RichUtils.toggleInlineStyle(editorState, style));
+    };
 
-  const handleStyle = (style) => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, style));
-  }
-
-  return (
-    <>
-      <StyledRichEditor>
-        <RichToolbar color="default">
-          {toolbarControls.map((control, i) => (
-            <IconButton key={i} onClick={() => handleStyle(control.value)}>
-              <control.icon />
-            </IconButton>
-          ))}
-        </RichToolbar>
-        <Editor editorState={editorState} onChange={handleChange} placeholder="Enter some text..." />
-      </StyledRichEditor>
-      <Divider />
-      <Preview editorState={editorState} />
-    </>
-  )
+    return (
+        <>
+            <StyledRichEditor>
+                <RichToolbar color="default">
+                    {toolbarControls.map((control, i) => (
+                        <IconButton key={i} onClick={() => handleStyle(control.value)}>
+                            <control.icon />
+                        </IconButton>
+                    ))}
+                </RichToolbar>
+                <Editor editorState={editorState} onChange={handleChange} placeholder="Enter some text..." />
+            </StyledRichEditor>
+            <Divider />
+            <Preview editorState={editorState} />
+        </>
+    );
 }
 
 export default RichEditor

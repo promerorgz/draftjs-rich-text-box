@@ -3,8 +3,6 @@ import RichEditor from './components/RichEditor';
 import { StyledApp } from './styles';
 
 const App = () => {
-
-
   return (
     <StyledApp>
       <RichEditor />
