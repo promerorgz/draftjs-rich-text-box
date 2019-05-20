@@ -1,11 +1,16 @@
 import React from 'react';
 import Editor from 'draft-js-plugins-editor';
 import { RichUtils } from 'draft-js';
+
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
-import { toolbarControls } from './utils/Controls';
-import Preview from './Preview';
 import { StyledRichEditor, RichToolbar } from '../styles'
+
+import Preview from './Preview';
+import { toolbarControls } from './utils/Controls';
+import { plugins } from "./plugins";
+
+
 import { updateEditor } from '../store/actions';
 import { connect } from 'react-redux';
 
@@ -27,22 +32,28 @@ const RichEditor = (props) => {
             <StyledRichEditor>
                 <RichToolbar color="default">
                     {toolbarControls.map((control, i) => (
-                        <IconButton key={i} onClick={() => handleStyle(control.value)}>
+                        <IconButton key={i} onClick={() => handleControls(control.value)}>
                             <control.icon />
                         </IconButton>
                     ))}
                 </RichToolbar>
-                <Editor editorState={editorState} onChange={handleChange} placeholder="Enter some text..." />
+                <Editor
+                    editorState={editorState}
+                    onChange={handleChange}
+                    placeholder="Enter some text..."
+                    plugins={plugins} />
             </StyledRichEditor>
             <Divider />
-            <Preview editorState={editorState} />
+            <Preview editorState={editorState} plugins={plugins} />
         </>
     );
 }
 
 
 const mapStateToProps = ({ editorState }) => ({ editorState });
+
 const mapDispatchToProps = dispatch => ({
     updateEditor: (editorState) => dispatch(updateEditor(editorState))
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(RichEditor)
