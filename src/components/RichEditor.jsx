@@ -32,7 +32,7 @@ const RichEditor = (props) => {
             <StyledRichEditor>
                 <RichToolbar color="default">
                     {toolbarControls.map((control, i) => (
-                        <IconButton key={i} onClick={() => handleControls(control.value)}>
+                        <IconButton key={i} onClick={() => handleStyle(control.value)}>
                             <control.icon />
                         </IconButton>
                     ))}
