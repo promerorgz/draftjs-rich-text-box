@@ -8,7 +8,7 @@ import { StyledRichEditor, RichToolbar } from '../styles'
 
 import Preview from './Preview';
 import { toolbarControls } from './utils/Controls';
-import { plugins } from "./plugins";
+import { plugins, TheToolbar } from "./plugins";
 
 
 import { updateEditor } from '../store/actions';
@@ -30,18 +30,19 @@ const RichEditor = (props) => {
     return (
         <>
             <StyledRichEditor>
-                <RichToolbar color="default">
+                {/* <RichToolbar color="default">
                     {toolbarControls.map((control, i) => (
-                        <IconButton key={i} onClick={() => handleControls(control.value)}>
+                        <IconButton key={i} onClick={() => handleStyle(control.value)}>
                             <control.icon />
                         </IconButton>
                     ))}
-                </RichToolbar>
+                </RichToolbar> */}
                 <Editor
                     editorState={editorState}
                     onChange={handleChange}
                     placeholder="Enter some text..."
                     plugins={plugins} />
+                <TheToolbar/>
             </StyledRichEditor>
             <Divider />
             <Preview editorState={editorState} plugins={plugins} />
