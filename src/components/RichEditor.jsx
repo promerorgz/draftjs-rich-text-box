@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Editor from 'draft-js-plugins-editor';
-import { EditorState, RichUtils } from 'draft-js';
+import { RichUtils } from 'draft-js';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import { toolbarControls } from './utils/Controls';
 import Preview from './Preview';
 import { StyledRichEditor, RichToolbar } from '../styles'
+import { updateEditor } from '../store/actions';
+import { connect } from 'react-redux';
 
-const RichEditor = () => {
 
-    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+const RichEditor = (props) => {
+
+    const { editorState, updateEditor } = props;
 
     const handleChange = (editorState) => {
-        setEditorState(editorState);
+        updateEditor(editorState);
     };
 
     const handleStyle = (style) => {
-        setEditorState(RichUtils.toggleInlineStyle(editorState, style));
+        updateEditor(RichUtils.toggleInlineStyle(editorState, style));
     };
 
     return (
@@ -37,4 +40,9 @@ const RichEditor = () => {
     );
 }
 
-export default RichEditor
+
+const mapStateToProps = ({ editorState }) => ({ editorState });
+const mapDispatchToProps = dispatch => ({
+    updateEditor: (editorState) => dispatch(updateEditor(editorState))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(RichEditor)
